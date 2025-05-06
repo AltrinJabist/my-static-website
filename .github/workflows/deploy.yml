@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Sync files to S3
-        uses: AltrinJabist/s3-sync-action@master
+        uses: jakejarvis/s3-sync-action@master
         with:
           args: --acl public-read --delete  # Makes files public and deletes removed files
         env:
