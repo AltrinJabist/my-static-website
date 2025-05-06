@@ -1,0 +1,23 @@
+name: Deploy to S3
+
+on:
+  push:
+    branches: [main]  # Trigger on push to main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Sync files to S3
+        uses: AltrinJabist/s3-sync-action@master
+        with:
+          args: --acl public-read --delete  # Makes files public and deletes removed files
+        env:
+          AWS_S3_BUCKET: altrin           # Your actual S3 bucket name
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: us-east-1                        # Replace with your bucket's region
