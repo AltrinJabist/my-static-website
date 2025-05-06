@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Sync files to S3
-        uses: jakejarvis/s3-sync-action@main  # ✅ use "main" not "master"
+        uses: jakejarvis/s3-sync-action@v0.5.1  # ✅ use "main" not "master"
         with:
           args: --acl public-read --delete
         env:
